@@ -1,11 +1,13 @@
 {
-  "name": "flamingo-wallet",
+  "name": "flamingo-ui",
   "version": "0.0.1",
   "description": "transaction history component",
   "main": "src/index.js",
   "scripts": {
     "start": "budo web/page.js:bundle.js --dir ./ --live --open -- -i STATE",
-    "build": "browserify web/page.js -i STATE -o bundle.js" ,
+    "build": "browserify web/page.js -i STATE -o bundle.js",
+    "start-legacy": "budo web_legacy.js:bundle.js --live --host 0.0.0.0",
+    "build-legacy": "browserify web_legacy.js > bundle.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -14,8 +16,7 @@
   },
   "author": "Ibrar",
   "license": "MIT",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "budo": "^11.8.4",
     "standardx": "^7.0.0",
