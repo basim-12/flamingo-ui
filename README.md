@@ -15,21 +15,33 @@ npm install basim-12/flamingo-ui
 ```js
 const STATE = require('STATE')
 const statedb = STATE(__filename)
+
+statedb.admin()
+const { sdb } = statedb(defaults)
+
 const wallet = require('flamingo-ui')
 
-function defaults () { return { drive: {}, _: {} } }
+async function start() {
+  const [{ sid }] = await sdb.watch(() => { })
+  document.body.append(await wallet(sid))
+}
 
-const { sdb } = statedb(defaults)
-const [{ sid }] = sdb.onwatch(() => {})
+start()
 
-document.body.append(wallet(sid))
+function defaults() {
+  return {
+    drive: { style: {}, data: {}, icons: {} },
+    _: {
+      'flamingo-ui': { $: '', 0: '', mapping: { style: 'style', data: 'data', icons: 'icons' } }
+    }
+  }
+}
 ```
 
 ### Legacy Dev Dashboard
 
 ```js
-const dev_wallet = require('flamingo-ui/src/node_modules/dev-wallet')
-dev_wallet()
+require('flamingo-ui/src/node_modules/dev-wallet')
 ```
 
 ## License
